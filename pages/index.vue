@@ -8,8 +8,11 @@
       </form>
     </template>
 
-    <div v-for="post in posts" class="mt-2">
-      <p class="mt-2">{{ post.text }}</p>
+    <div v-for="post in posts" class="mt-2 px-2 py-4 border-b border-gray-100">
+      <p>{{ post.poster.username }} at {{ new
+          Date(post.created_at).toLocaleTimeString()
+      }}</p>
+      <p :key="post.id" class="mt-2">{{ post.text }}</p>
     </div>
   </div>
 </template>
@@ -43,7 +46,8 @@ async function submitPost() {
 }
 
 onMounted(async () => {
-  const { data } = await supabase.from("posts").select();
+  const { data } = await supabase.from("posts")
+    .select("*, poster:poster_id(*)");
   posts.value = data;
 })
 
