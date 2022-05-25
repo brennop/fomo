@@ -31,7 +31,8 @@ onMounted(() => {
 const handleLogin = async () => {
   try {
     loading.value = true
-    const { error } = await supabase.auth.signIn({ email: email.value })
+    const { error } = await supabase.auth.signIn({ email: email.value },
+      { redirectTo: window.location.origin + "/" })
     if (error) throw error
     alert("Check your email for the login link!")
   } catch (error) {
