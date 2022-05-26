@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-2 px-2 py-4 border-b border-gray-100 text-gray-900">
+  <div class="mt-2 px-2 py-4 border-b border-gray-200 text-gray-900">
     <p>{{ post.poster.username }}
 
     <div class="select-none text-sm animate-bounce inline-block" v-if="isOnFire"
@@ -7,7 +7,7 @@
     </div>
     <span class="text-sm"> at {{ time }}</span>
     </p>
-    <p class="mt-2">{{ post.text }}</p>
+    <p class="mt-2 font-serif">{{ post.text }}</p>
   </div>
 </template>
 

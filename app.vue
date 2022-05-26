@@ -9,3 +9,9 @@
 
 <script setup>
 </script>
+
+<style>
+body {
+  background-color: #fdfdfd;
+}
+</style>
