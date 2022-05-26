@@ -20,6 +20,15 @@ const email = ref("")
 
 const supabase = useSupabaseClient();
 
+const router = useRouter();
+const user = useSupabaseUser();
+
+watch(user, (value) => {
+  if (value) {
+    router.push("/")
+  }
+})
+
 const handleLogin = async () => {
   try {
     loading.value = true
