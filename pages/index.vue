@@ -1,18 +1,14 @@
 <template>
   <template v-if="!posted">
+    <marquee>Check-in first to see what others are up to!</marquee>
     <form class="mt-2" @submit.prevent="submitPost">
       <textarea class="border border-gray-900 w-full p-1" v-model="text" />
       <input type="submit" class="w-full border border-gray-900 px-4 py-2 mt-2"
-        :value="loading ? 'Loading ...' : 'post'" :disabled="loading" />
+        :value="loading ? 'Loading ...' : 'check-in'" :disabled="loading" />
     </form>
   </template>
 
-  <div v-for="post in posts" class="mt-2 px-2 py-4 border-b border-gray-100">
-    <p>{{ post.poster.username }} at {{ new
-        Date(post.created_at).toLocaleTimeString()
-    }}</p>
-    <p :key="post.id" class="mt-2">{{ post.text }}</p>
-  </div>
+  <post v-for="post in posts" :post="post" :key="post.id" />
 </template>
 
 <script setup>
@@ -32,6 +28,7 @@ async function submitPost() {
       .from("posts")
       .insert([{ text: text.value }], { returning: "minimal" });
 
+    window.location.reload();
   } catch (error) {
     alert(error.message)
   } finally {
