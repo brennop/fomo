@@ -18,6 +18,8 @@
 const loading = ref(false)
 const email = ref("")
 
+const supabase = useSupabaseClient();
+
 const handleLogin = async () => {
   try {
     loading.value = true
