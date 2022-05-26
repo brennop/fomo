@@ -14,6 +14,6 @@
 <script setup>
 const { post } = defineProps(["post"]);
 
-const isOnFire = post.poster.streak > 0;
+const isOnFire = post.poster.streak > 1;
 const time = new Date(post.created_at).toLocaleTimeString()
 </script>

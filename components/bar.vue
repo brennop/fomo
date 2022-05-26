@@ -11,34 +11,10 @@
 </template>
 
 <script setup>
-import { store } from "../lib/store"
-
 const supabase = useSupabaseClient();
 const user = useSupabaseUser()
 
 const loading = ref(true)
-
-async function getProfile() {
-  try {
-    loading.value = true
-
-    let { data, error, status } = await supabase
-      .from("profiles")
-      .select(`username, avatar_url`)
-      .eq("id", user.id)
-      .single()
-
-    if (error && status !== 406) throw error
-
-    if (data) {
-      store.profile = data
-    }
-  } catch (error) {
-    alert(error.message)
-  } finally {
-    loading.value = false
-  }
-}
 
 async function signOut() {
   try {
@@ -51,8 +27,4 @@ async function signOut() {
     loading.value = false
   }
 }
-
-onMounted(() => {
-  /* getProfile() */
-})
 </script>

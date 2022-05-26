@@ -21,6 +21,10 @@ const posted = ref(false)
 const text = ref("")
 const posts = ref([])
 
+definePageMeta({
+  middleware: 'profile'
+})
+
 async function submitPost() {
   try {
     loading.value = true
@@ -28,7 +32,9 @@ async function submitPost() {
       .from("posts")
       .insert([{ text: text.value }], { returning: "minimal" });
 
-    window.location.reload();
+    posted.value = true
+    fetchPosts();
+
   } catch (error) {
     alert(error.message)
   } finally {
@@ -36,10 +42,15 @@ async function submitPost() {
   }
 }
 
-onMounted(async () => {
+async function fetchPosts() {
   const { data } = await supabase.from("posts")
-    .select("*, poster:poster_id(*)");
+    .select("*, poster:poster_id(*)")
+    .order("created_at", { ascending: false })
   posts.value = data;
+}
+
+onMounted(async () => {
+  fetchPosts()
 })
 
 onMounted(() => {
