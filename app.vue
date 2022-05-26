@@ -1,9 +1,8 @@
 <template>
   <div class="mx-auto max-w-2xl">
     <Bar />
-    <NuxtPage />
+    <div class="p-4 mx-auto max-w-xl">
+      <NuxtPage />
+    </div>
   </div>
 </template>
-
-<script setup>
-</script>

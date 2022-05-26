@@ -18,16 +18,6 @@
 const loading = ref(false)
 const email = ref("")
 
-const supabase = useSupabaseClient();
-
-onMounted(() => {
-  supabase.auth.onAuthStateChange((user) => {
-    if (user) {
-      router.push("/")
-    }
-  })
-})
-
 const handleLogin = async () => {
   try {
     loading.value = true
