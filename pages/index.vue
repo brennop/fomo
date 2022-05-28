@@ -1,6 +1,6 @@
 <template>
   <template v-if="!posted">
-    <marquee>Check-in first to see what others are up to!</marquee>
+    <span>Check-in first to see what others are up to!</span>
     <form class="mt-2" @submit.prevent="submitPost">
       <textarea class="border border-gray-900 w-full p-1" v-model="text" />
       <input type="submit" class="w-full border border-gray-900 px-4 py-2 mt-2"
