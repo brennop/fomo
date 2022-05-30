@@ -1,11 +1,17 @@
 <template>
   <div class="mt-2 px-2 py-4 border-b border-gray-200 text-gray-900">
-    <p>{{ post.poster.username }}
+    <p>
+      <span v-if="isOnFire"
+        class="text-shadow shadow-orange-200 text-orange-500/90 bg-clip-text bg-bottom bg-[url('fire.gif')]"
+        :title="`${post.poster.username} is on a ${post.poster.streak} day streak!`">
+        {{ post.poster.username }}
+        🔥
+      </span>
+      <span v-else class="text-gray-900">
+        {{ post.poster.username }}
+      </span>
 
-    <div class="select-none text-sm animate-bounce inline-block" v-if="isOnFire"
-      :title="post.poster.username + ' is on a ' + post.poster.streak + ' day streak'">🔥
-    </div>
-    <span class="text-sm"> at {{ time }}</span>
+      <span class="text-sm"> at {{ time }}</span>
     </p>
     <p class="mt-2 font-serif">{{ post.text }}</p>
   </div>
