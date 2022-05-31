@@ -1,9 +1,8 @@
 <template>
   <div class="mt-2 px-2 py-4 border-b border-gray-200 text-gray-900">
     <p>
-      <span v-if="isOnFire"
-        class="text-shadow shadow-orange-200 text-orange-500/90 bg-clip-text bg-bottom bg-[url('fire.gif')]"
-        :title="`${post.poster.username} is on a ${post.poster.streak} day streak!`">
+      <span v-if="isOnFire" class="text-shadow shadow-orange-200 text-orange-500/80 bg-clip-text
+        bg-bottom bg-[url('/fire.gif')]" :title="`${post.poster.username} is on a ${post.poster.streak} day streak!`">
         {{ post.poster.username }}
         🔥
       </span>
